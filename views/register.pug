@@ -2,13 +2,24 @@ extends layout
 
 block content
   .container
-    h1 Formulaire d'inscription
+    h2#msg_h2 Subscribe here !
+    p Just subscribe, it's good for your karma (like being vegan)
     br
-    form(role='form', action="/register",method="post", style='max-width: 300px;')
+    form.center-block(role='form', action="/register",method="post", style='max-width: 300px;')
       .form-group
-          input.form-control(type='text', name="username", placeholder='Identifiant')
+          input.form-control(type='text', name="username", placeholder='Login')
       .form-group
-        input.form-control(type='password', name="password", placeholder='Mot de passe')
-      button.btn.btn-default(type='submit') S'inscrire
+        input.form-control(type='password', name="password", placeholder='Password')
+      .form-group
+        input.form-control(type='text', name="name", placeholder='Name')
+      .form-group
+        input.form-control(type='text', name="address", placeholder='Address')
+      .form-group
+        input.form-control(type='text', name="purpose", placeholder='Purpose')
+      .form-group
+        input.form-control(type='email', name="email", placeholder='Email')
+      .form-group
+        input.form-control(type='url', name="website", placeholder='Website')
+      button.btn.btn-default(type='submit') Subscribe
       a(href='/')
-        button.btn.btn-primary(type="button") Annuler
+        button.btn.btn-primary(type="button") Cancel
