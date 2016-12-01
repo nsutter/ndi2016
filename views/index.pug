@@ -1,17 +1,17 @@
 extends layout
 
 block content
-  script (src="https://code.responsivevoice.org/responsivevoice.js")
+  script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
   script.
     if (annyang) {
     // Let's define a command.
     var commands = {
       'hello': function() { console.log('Hello world!'); },
-      'health': function(){  this.document.location.href = '/soins';},
-      'shower': function(){  this.document.location.href = '/laver';},
-      'eat': function(){ this.document.location.href = '/manger';},
-      'bed': function(){ this.document.location.href = '/lit';},
+      'health': function(){ responsiveVoice.speak("You are now reaching the page to get healed"); this.document.location.href = '/soins';},
+      'shower': function(){ responsiveVoice.speak("You are reaching the page to find a place to shower."); this.document.location.href = '/laver';},
+      'eat': function(){ responsiveVoice.speak("You are reaching the page to help you find a place to eat"); this.document.location.href = '/manger';},
+      'bed': function(){ responsiveVoice.speak("You are reaching the page to help you find a place to sleep"); this.document.location.href = '/lit';},
       'help': function(){ responsiveVoice.speak("To load a page just say health or shower or eat or bed.");}
       };
     };
