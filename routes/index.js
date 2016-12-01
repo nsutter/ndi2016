@@ -3,11 +3,6 @@ var passport = require('passport');
 var Account = require('../models/account');
 var router = express.Router();
 
-<<<<<<< HEAD
-router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
-});
-
 router.get('/register', function(req, res) {
     res.render('register', { });
 });
@@ -39,11 +34,10 @@ router.get('/logout', function(req, res) {
 
 router.get('/ping', function(req, res){
     res.status(200).send("pong!");
-=======
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Accueil' });
->>>>>>> 03306d70b62c03c261176ef5bb761db5d68bb71b
 });
 
 module.exports = router;
