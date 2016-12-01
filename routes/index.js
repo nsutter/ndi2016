@@ -32,9 +32,6 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-router.get('/ping', function(req, res){
-    res.status(200).send("pong!");
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Accueil' });
