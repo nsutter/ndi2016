@@ -38,6 +38,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/health', function(req, res){
+  Event.find({})
   res.render('event', {title: "health", lat: req.body.StartLat, lon: req.body.StartLon})
 });
 
