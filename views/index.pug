@@ -1,10 +1,30 @@
 extends layout
 
 block content
-  if (!user)
-    a(href="/login") S'inscrire
-    br
-    a(href="/register") S'enregistrer
-  if (user)
-    p #{user.username}
-    a(href="/logout") Se déconnecter
+
+  h1= title
+  h2#msg_h2
+    | Need help?
+  .row
+    .col-md-3
+    a(href="/soins")
+      .col-md-2
+        img(src="/images/hospital.svg")
+    .col-md-2
+    a(href="/lit")
+      .col-md-2
+        img(src="images/sleeping-bed-silhouette.svg")
+    .col-md-3
+  br
+  br
+  br
+  .row
+    .col-md-3
+    a(href="/laver")
+      .col-md-2
+        img(src="/images/shower.svg")
+    .col-md-2
+    a(href="/manger")
+      .col-md-2
+        img(src="images/restaurant.svg")
+    .col-md-3
