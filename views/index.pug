@@ -5,9 +5,13 @@ block content
 
   h1= title
   h2#msg_h2
+<<<<<<< HEAD
     | Need help?
   .startLat
   .startLon
+=======
+    | Need help ?
+>>>>>>> 263398e3bb5ed1dd4a027b7b4760f98fb4b72875
   .row
     .col-md-3
 
@@ -48,6 +52,22 @@ block content
 
     .col-md-3
 
+    .row
+      if(user)
+        h2#msg_h2
+          | Welcome back #{user.name} :)
+          p
+            | Do you want to go to your&nbsp;
+            a(href="/asso") admin. page
+            | &nbsp;?
+            if(!user)
+              h2#msg_h2
+                | Want to help ?
+                p You're a organisation that want to act for refugees ? We need you ! &nbsp;
+                a(href="/register") Subscribe here to offer your services !
+                br
+                  p Already a member ? Just&nbsp;
+                  a(href="/login") log in !
 
 
   script.

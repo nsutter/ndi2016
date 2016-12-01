@@ -8,7 +8,7 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
+    Account.register(new Account({ username : req.body.username, address : req.body.address, name : req.body.name, purpose : req.body.purpose, email : req.body.email, website : req.body.website }), req.body.password, function(err, account) {
         if (err) {
             return res.render('register', { account : account });
         }
@@ -17,6 +17,10 @@ router.post('/register', function(req, res) {
             res.redirect('/');
         });
     });
+});
+
+router.get('/asso', function(req, res) {
+    res.render('asso', { asso : req.user });
 });
 
 router.get('/login', function(req, res) {
@@ -38,7 +42,7 @@ router.post('/health', function(req, res){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Accueil' });
+  res.render('index', { title: 'titel - Make immigration great again', user : req.user });
 });
 
 module.exports = router;

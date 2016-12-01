@@ -8,7 +8,8 @@ var Event = new Schema({
   when: Date,
   longitude: Number,
   latitude: Number,
-  who: String
+  who: String,
+  categorie: String
 });
 
 Event.plugin(passportLocalMongoose);
