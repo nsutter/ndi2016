@@ -1,6 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
+var Event = require('../models/event');
 var router = express.Router();
 
 router.get('/register', function(req, res) {
