@@ -38,9 +38,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/health', function(req, res){
-  console.log(req.body.StartLon + 0.1);
-  console.log(req.body.StartLon);
-  Event.find({longitude: {$lt: req.body.StartLon + 0.1, $gt: req.body.StartLon - 0.1}, latitude: {$lt: req.body.StartLat+0.1, $gt: req.body.StartLat-0.1}}, function(err, res) {
+  Event.find({longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, res) {
     res.render('event', {title: "health", res: res});
   });
 });
