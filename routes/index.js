@@ -32,6 +32,10 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+router.post('/health', function(req, res){
+  res.render('event', {title: "health", lat: req.body.StartLat, lon: req.body.StartLon})
+});
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Accueil' });

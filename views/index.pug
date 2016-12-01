@@ -2,29 +2,61 @@ extends layout
 
 block content
 
+
   h1= title
   h2#msg_h2
     | Need help?
+  .startLat
+  .startLon
   .row
     .col-md-3
-    a(href="/health")
+
+    form(action='/health', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="/images/hospital.svg")
+        input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Submit")
+
     .col-md-2
-    a(href="/bed")
+
+    form(action='/bed', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="images/sleeping-bed-silhouette.svg")
+        input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Submit")
+
     .col-md-3
   br
   br
   br
   .row
     .col-md-3
-    a(href="/shower")
+
+    form(action='/shower', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="/images/shower.svg")
+        input(type="image", name="submit", src="images/shower.svg", border="0", alt="Submit")
+
     .col-md-2
-    a(href="/eat")
+
+    form(action='/eat', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="images/restaurant.svg")
+        input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Submit")
+
     .col-md-3
+
+
+
+  script.
+    window.onload = function() {
+      var geoSuccess = function(position) {
+        startPos = position;
+        document.getElementById('startLat').value = startPos.coords.latitude;
+        document.getElementById('startLon').value = startPos.coords.longitude;
+      };
+
+      navigator.geolocation.getCurrentPosition(geoSuccess);
+    };
