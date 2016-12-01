@@ -2,7 +2,9 @@ var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var Event = require('../models/event');
+
 var NodeGeocoder = require('node-geocoder');
+
 var router = express.Router();
 
 router.get('/register', function(req, res) {
@@ -75,6 +77,12 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
+});
+
+router.post('/health', function(req, res){
+  Event.find({longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, res) {
+    res.render('event', {title: "health", res: res});
+  });
 });
 
 /* GET home page. */
