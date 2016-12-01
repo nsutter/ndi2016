@@ -1,6 +1,32 @@
 extends layout
 
 block content
+  script (src='https://code.responsivevoice.org/responsivevoice.js')
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+  script.
+    if (annyang) {
+    // Let's define a command.
+    var commands = {
+      'hello': function() { console.log('Hello world!'); },
+      'health': function(){  this.document.location.href = '/soins';},
+      'shower': function(){  this.document.location.href = '/laver';},
+      'eat': function(){ this.document.location.href = '/manger';},
+      'bed': function(){ this.document.location.href = '/lit';},
+      'help': function(){ responsiveVoice.speak("To load a page just say health or shower or eat or bed.");}
+      };
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    annyang.addCallback('result', function(phrases) {
+      console.log("I think the user said: ", phrases[0]);
+      console.log("But then again, it could be any of the following: ", phrases);
+    });
+
+    // Start listening.
+    annyang.start();
+
 
   h1= title
   h2#msg_h2
