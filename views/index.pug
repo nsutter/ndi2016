@@ -28,29 +28,75 @@ block content
     annyang.start();
 
 
+
   h1= title
   h2#msg_h2
-    | Need help?
+    | Need help ?
   .row
     .col-md-3
-    a(href="/soins")
+
+    form(action='/health', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="/images/hospital.svg")
+        input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Submit")
+
     .col-md-2
-    a(href="/lit")
+
+    form(action='/bed', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="images/sleeping-bed-silhouette.svg")
+        input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Submit")
+
     .col-md-3
   br
   br
   br
   .row
     .col-md-3
-    a(href="/laver")
+
+    form(action='/shower', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="/images/shower.svg")
+        input(type="image", name="submit", src="images/shower.svg", border="0", alt="Submit")
+
     .col-md-2
-    a(href="/manger")
+
+    form(action='/eat', method='post')
+      input(type='hidden', id='startLat', name='StartLat', value='')
+      input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        img(src="images/restaurant.svg")
+        input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Submit")
+
     .col-md-3
+
+    .row
+      if(user)
+        h2#msg_h2
+          | Welcome back #{user.name} :)
+          p
+            | Do you want to go to your&nbsp;
+            a(href="/asso") admin. page
+            | &nbsp;?
+            if(!user)
+              h2#msg_h2
+                | Want to help ?
+                p You're a organisation that want to act for refugees ? We need you ! &nbsp;
+                a(href="/register") Subscribe here to offer your services !
+                br
+                p Already a member ? Just&nbsp;
+                a(href="/login") log in !
+
+
+  script.
+    window.onload = function() {
+      var geoSuccess = function(position) {
+        startPos = position;
+        document.getElementById('startLat').value = startPos.coords.latitude;
+        document.getElementById('startLon').value = startPos.coords.longitude;
+      };
+
+      navigator.geolocation.getCurrentPosition(geoSuccess);
+    };
