@@ -38,8 +38,11 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/health', function(req, res){
-  Event.find({})
-  res.render('event', {title: "health", lat: req.body.StartLat, lon: req.body.StartLon})
+  console.log(req.body.StartLon + 0.1);
+  console.log(req.body.StartLon);
+  Event.find({longitude: {$lt: req.body.StartLon + 0.1, $gt: req.body.StartLon - 0.1}, latitude: {$lt: req.body.StartLat+0.1, $gt: req.body.StartLat-0.1}}, function(err, res) {
+    res.render('event', {title: "health", res: res});
+  });
 });
 
 /* GET home page. */
