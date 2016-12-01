@@ -27,8 +27,6 @@ block content
     // Start listening.
     annyang.start();
 
-
-
   h1= title
   h2#msg_h2
     | Need help ?
@@ -72,23 +70,22 @@ block content
 
     .col-md-3
 
-    .row
-      if(user)
-        h2#msg_h2
-          | Welcome back #{user.name} :)
-          p
-            | Do you want to go to your&nbsp;
-            a(href="/asso") admin. page
-            | &nbsp;?
-            if(!user)
-              h2#msg_h2
-                | Want to help ?
-                p You're a organisation that want to act for refugees ? We need you ! &nbsp;
-                a(href="/register") Subscribe here to offer your services !
-                br
-                p Already a member ? Just&nbsp;
-                a(href="/login") log in !
-
+  .row
+    if(user)
+      h2#msg_h2
+        | Welcome back #{user.name} :)
+      p
+        | Do you want to go to your&nbsp;
+        a(href="/asso") admin. page
+        | &nbsp;?
+    if(!user)
+      h2#msg_h2
+        | Want to help ?
+      p You're a organisation that want to act for refugees ? We need you ! &nbsp;
+        a(href="/register") Subscribe here to offer your services !
+      br
+      p Already a member ? Just&nbsp;
+        a(href="/login") log in !
 
   script.
     window.onload = function() {
