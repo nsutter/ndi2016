@@ -1,6 +1,8 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
+var Event = require('../models/event');
+var NodeGeocoder = require('node-geocoder');
 var router = express.Router();
 
 router.get('/register', function(req, res) {
@@ -19,6 +21,45 @@ router.post('/register', function(req, res) {
     });
 });
 
+router.post('/add_event', function(req, res) {
+
+  var options = {
+    provider: 'google',
+
+    // configuration du géocoding avec Google Maps
+    httpAdapter: 'https',
+    apiKey: 'AIzaSyBSgoZTf61bLHq-ZCJEIE3SHKIBx7gUIOk',
+    formatter: null
+  };
+
+  var geocoder = NodeGeocoder(options);
+
+  geocoder.geocode(req.body.where)
+    .then(function(geores) {
+
+      var latitude = geores[0].latitude;
+      var longitude = geores[0].longitude;
+
+      console.log(latitude + " - " + longitude +" - " + req.body.category);
+
+      var nouvelEvent = new Event({
+        title : req.body.title,
+        what : req.body.what,
+        category : req.body.category,
+        when : req.body.when,
+        who : req.user.username,
+        latitude : latitude,
+        longitude : longitude
+      });
+
+      nouvelEvent.save(function (err) {
+        if (err) return console.log(err);
+          return res.redirect("/asso");
+      })
+
+    });
+});
+
 router.get('/asso', function(req, res) {
     res.render('asso', { asso : req.user });
 });
@@ -28,7 +69,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
+    res.redirect('/asso');
 });
 
 router.get('/logout', function(req, res) {

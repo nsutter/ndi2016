@@ -8,17 +8,15 @@ block content
       .form-group
         input.form-control(type='text', name="title", placeholder='Title')
       .form-group
-        input.form-control(type='password', name="password", placeholder='What do you plan ?')
+        input.form-control(type='text', name="what", placeholder='What do you plan ?')
+      select.form-control(name='category', id='category')
+        option(disabled, selected) Select the category
+        option(value='health') health
+        option(value='bed') bed
+        option(value='shower') shower
+        option(value='eat') eat
       .form-group
-        input.form-control(type='text', name="name", placeholder='Name')
+        input.form-control(type='date', name="when", placeholder='When ?')
       .form-group
-        input.form-control(type='text', name="address", placeholder='Address')
-      .form-group
-        input.form-control(type='text', name="purpose", placeholder='Purpose')
-      .form-group
-        input.form-control(type='email', name="email", placeholder='Email')
-      .form-group
-        input.form-control(type='url', name="website", placeholder='Website')
-      button.btn.btn-default(type='submit') Subscribe
-      a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+        input.form-control(type='text', name="where", placeholder='Where ?')
+      button.btn.btn-default(type='submit') Add this event

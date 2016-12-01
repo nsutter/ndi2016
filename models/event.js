@@ -5,11 +5,11 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var Event = new Schema({
   title: String,
   what: String,
-  when: Date,
-  longitude: Number,
-  latitude: Number,
+  when: String,
+  longitude: String,
+  latitude: String,
   who: String,
-  categorie: String
+  category: String
 });
 
 Event.plugin(passportLocalMongoose);
