@@ -41,8 +41,8 @@ block content
     .col-md-2
 
     form#formBed(action='/bed', method='post')
-      input(type='hidden', id='startLat', name='StartLat', value='')
-      input(type='hidden', id='startLon', name='StartLon', value='')
+      input(type='hidden', id='startLat1', name='StartLat', value='')
+      input(type='hidden', id='startLon1', name='StartLon', value='')
       .col-md-2
         input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Logo de lit")
 
@@ -54,16 +54,16 @@ block content
     .col-md-3
 
     form#formShower(action='/shower', method='post')
-      input(type='hidden', id='startLat', name='StartLat', value='')
-      input(type='hidden', id='startLon', name='StartLon', value='')
+      input(type='hidden', id='startLat2', name='StartLat', value='')
+      input(type='hidden', id='startLon2', name='StartLon', value='')
       .col-md-2
         input(type="image", name="submit", src="images/shower.svg", border="0", alt="Logo de douche")
 
     .col-md-2
 
     form#formEat(action='/eat', method='post')
-      input(type='hidden', id='startLat', name='StartLat', value='')
-      input(type='hidden', id='startLon', name='StartLon', value='')
+      input(type='hidden', id='startLat3', name='StartLat', value='')
+      input(type='hidden', id='startLon3', name='StartLon', value='')
       .col-md-2
         input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Logo de repas")
 
@@ -75,6 +75,12 @@ block content
         startPos = position;
         document.getElementById('startLat').value = startPos.coords.latitude;
         document.getElementById('startLon').value = startPos.coords.longitude;
+        document.getElementById('startLat1').value = startPos.coords.latitude;
+        document.getElementById('startLon1').value = startPos.coords.longitude;
+        document.getElementById('startLat2').value = startPos.coords.latitude;
+        document.getElementById('startLon2').value = startPos.coords.longitude;
+        document.getElementById('startLat3').value = startPos.coords.latitude;
+        document.getElementById('startLon3').value = startPos.coords.longitude;
       };
 
       navigator.geolocation.getCurrentPosition(geoSuccess);

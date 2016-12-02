@@ -80,8 +80,26 @@ router.get('/logout', function(req, res) {
 });
 
 router.post('/health', function(req, res){
-  Event.find({longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, resultat) {
+  Event.find({category: "health", longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, resultat) {
     res.render('event', {title: "health", resultat: resultat, myposlat: req.body.StartLat, myposlong: req.body.StartLon});
+  });
+});
+
+router.post('/bed', function(req, res){
+  Event.find({category: "bed", longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, resultat) {
+    res.render('event', {title: "bed", resultat: resultat, myposlat: req.body.StartLat, myposlong: req.body.StartLon});
+  });
+});
+
+router.post('/shower', function(req, res){
+  Event.find({category: "shower", longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, resultat) {
+    res.render('event', {title: "shower", resultat: resultat, myposlat: req.body.StartLat, myposlong: req.body.StartLon});
+  });
+});
+
+router.post('/eat', function(req, res){
+  Event.find({category: "eat", longitude: {$lt: parseFloat(req.body.StartLon) + 0.1, $gt: parseFloat(req.body.StartLon) - 0.1}, latitude: {$lt: parseFloat(req.body.StartLat)+0.1, $gt: parseFloat(req.body.StartLat)-0.1}}, function(err, resultat) {
+    res.render('event', {title: "eat", resultat: resultat, myposlat: req.body.StartLat, myposlong: req.body.StartLon});
   });
 });
 
