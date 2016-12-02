@@ -90,4 +90,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'titel - a portal sponsored by MSF', user : req.user });
 });
 
+router.get('/about', function(req, res) {
+    res.render('about', { asso : req.user });
+});
+
 module.exports = router;
