@@ -33,15 +33,16 @@ block content
 
   .hidden-xl.hidden-md.col-sm-2
   .col-xl-3.col-md-3.col-sm-8.col-xs-12
-    .well
       - var nb= resultat.length;
       - var i=0;
-      while i< nb
-        h3 #{resultat[i].title}
-        p
-          | #{resultat[i].what}
-          if(resultat[i] != -1)
-            | #{resultat[i].date}
-          br
-          | by: #{resultat[i].who}
-        -i = i+ 1
+      if nb <= 1
+        while i< nb
+          .well
+            h3 #{resultat[i].title}
+            p
+              | #{resultat[i].what}
+              if(resultat[i] != -1)
+                | #{resultat[i].date}
+              br
+              | by: #{resultat[i].who}
+            -i = i+ 1
