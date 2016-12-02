@@ -23,10 +23,13 @@ html
                   a(href="/asso") Access to your administration panel
               if(!user)
                 li
-                  a(href="/login") Log in (for organisation only)
+                  a(href="/login") Log in
+              if(user)
+                li
+                  a(href="/logout") Log out
               if(!user)
                 li
-                  a(href="/register") Register (for organisation only)
+                  a(href="/register") Register
               li
                 a(href="/about") About
 

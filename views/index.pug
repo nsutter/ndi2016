@@ -1,7 +1,7 @@
 extends layout
 
 block content
-
+  script(src="/javascripts/cookies.js")
   script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
 
@@ -107,6 +107,7 @@ block content
       // ajout des commandes et écoute
       annyang.addCommands(commands);
 
+      // debug
       annyang.addCallback('result', function(phrases) {
         console.log("I think the user said: ", phrases[0]);
         console.log("But then again, it could be any of the following: ", phrases);

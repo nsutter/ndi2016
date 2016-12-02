@@ -1,35 +1,76 @@
 extends layout
 
 block content
-  h2= title
 
+  h1#msg_h1= title
+  p.description.lead #{resultat.length} result(s) for your request (40 km near you)
   .col-xl-1.col-md-1.col-sm-2.hidden-xs
   #map.col-xl-6.col-md-6.col-sm-8.col-xs-12
 
   script.
     var nb = !{JSON.stringify(resultat)};
     function initMap() {
-    latitude= "#{myposlat}";
-    longitude= "#{myposlong}";
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: parseFloat(latitude), lng: parseFloat(longitude) },
-        zoom: 13
-      });
+    var latitude = "#{myposlat}";
+    var longitude = "#{myposlong}";
 
-      var i;
-      for(i=0; i<nb.length; i++)
-      {
-        var lat= nb[i].latitude;
-        var lg= nb[i].longitude;
-        var myLatLng = {lat: parseFloat(lat), lng: parseFloat(lg)};
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: nb[i].title
-        });
-      }
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: parseFloat(latitude), lng: parseFloat(longitude)},
+      zoom: 13
+    });
+
+    var i;
+    for(i = 0; i < nb.length; i++)
+    {
+      var lat= nb[i].latitude;
+      var lg= nb[i].longitude;
+      var myLatLng = {lat: parseFloat(lat), lng: parseFloat(lg)};
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: nb[i].title
+      });
+    }
     }
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgoZTf61bLHq-ZCJEIE3SHKIBx7gUIOk&callback=initMap")
+  script(src="https://code.responsivevoice.org/responsivevoice.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+  script(src="/javascripts/cookies.js")
+  script.
+    var flag = false;
+
+    if(getCookie("vocal"))
+    {
+      flag = true;
+      console.log("VocalCookie detected.");
+    }
+
+    if(annyang){
+
+      // définition des commandes vocales
+      var commands = {
+        'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/");}},
+        'read': function(){ if(flag){
+          var i;
+          for(i = 0; i < nb.length; i++)
+          {
+            responsiveVoice.speak(nb.title + " in " + nb.where);
+          }
+        }},
+        'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. To listen to the offers near you, say read. In case of emergency, call 112.");}}
+        };
+
+      // ajout des commandes et écoute
+      annyang.addCommands(commands);
+
+      // debug
+      annyang.addCallback('result', function(phrases) {
+        console.log("I think the user said: ", phrases[0]);
+        console.log("But then again, it could be any of the following: ", phrases);
+      });
+
+      annyang.start();
+
+    };
 
   .hidden-xl.hidden-md.col-sm-2
   .col-xl-3.col-md-3.col-sm-8.col-xs-12
