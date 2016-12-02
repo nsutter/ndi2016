@@ -72,12 +72,13 @@ block content
 
     };
 
+  //- affichage des événements
   .hidden-xl.hidden-md.col-sm-2
   .col-xl-3.col-md-3.col-sm-8.col-xs-12
-      - var nb= resultat.length;
-      - var i=0;
+      - var nb = resultat.length;
+      - var i = 0;
       if nb <= 1
-        while i< nb
+        while i < nb
           .well
             h3 #{resultat[i].title}
             p
@@ -85,5 +86,5 @@ block content
               if(resultat[i] != -1)
                 | #{resultat[i].date}
               br
-              | by: #{resultat[i].who}
-            -i = i+ 1
+              | by : #{resultat[i].who}
+            - i = i + 1
