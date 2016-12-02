@@ -3,44 +3,45 @@ extends layout
 block content
 
   script.
+    var flag = false;
+
     if (annyang) {
 
     // définition des commandes vocales
     var commands = {
-      'hello': function() { console.log('Hello world!'); },
-      'health': function(){ responsiveVoice.speak("You are now reaching the page to get healed"); this.document.location.href = '/soins';},
-      'shower': function(){ responsiveVoice.speak("You are reaching the page to find a place to shower."); this.document.location.href = '/laver';},
-      'eat': function(){ responsiveVoice.speak("You are reaching the page to help you find a place to eat"); this.document.location.href = '/manger';},
-      'bed': function(){ responsiveVoice.speak("You are reaching the page to help you find a place to sleep"); this.document.location.href = '/lit';},
-      'help': function(){ responsiveVoice.speak("To load a page just say health or shower or eat or bed.");}
+      'start': function(){  flag = true; responsiveVoice.speak("Vocal service activated.");
+      'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
+      'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
+      'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
+      'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
+      'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
       };
     };
 
     // ajout des commandes et écoute
     annyang.addCommands(commands);
-    });
     annyang.start();
 
   h1#msg_h1 #{title}
   br
-  h2#msg_h2 If you need help, we care about you
+  h2#msg_h2 If you need help, we care about you :)
   br
   .row
     .col-md-3
 
-    form(action='/health', method='post')
+    form#formHealth(action='/health', method='post')
       input(type='hidden', id='startLat', name='StartLat', value='')
       input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Submit")
+        input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Logo de santé")
 
     .col-md-2
 
-    form(action='/bed', method='post')
+    form#formBed(action='/bed', method='post')
       input(type='hidden', id='startLat', name='StartLat', value='')
       input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Submit")
+        input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Logo de lit")
 
     .col-md-3
   br
@@ -49,19 +50,19 @@ block content
   .row
     .col-md-3
 
-    form(action='/shower', method='post')
+    form#formShower(action='/shower', method='post')
       input(type='hidden', id='startLat', name='StartLat', value='')
       input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        input(type="image", name="submit", src="images/shower.svg", border="0", alt="Submit")
+        input(type="image", name="submit", src="images/shower.svg", border="0", alt="Logo de douche")
 
     .col-md-2
 
-    form(action='/eat', method='post')
+    form#formEat(action='/eat', method='post')
       input(type='hidden', id='startLat', name='StartLat', value='')
       input(type='hidden', id='startLon', name='StartLon', value='')
       .col-md-2
-        input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Submit")
+        input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Logo de repas")
 
     .col-md-3
 

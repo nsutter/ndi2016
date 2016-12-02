@@ -18,10 +18,15 @@ html
             a.navbar-brand(href='/') AWSOMEMSF
           #nc.collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
-              li
-                a(href="/login") Log in (for organisation only)
-              li
-                a(href="/register") Register (for organisation only)
+              if(user)
+                li
+                  a(href="/asso") Access to your administration panel
+              if(!user)
+                li
+                  a(href="/login") Log in (for organisation only)
+              if(!user)
+                li
+                  a(href="/register") Register (for organisation only)
               li
                 a(href="/about") About
 
