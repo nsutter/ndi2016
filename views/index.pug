@@ -124,5 +124,5 @@ block content
         document.getElementById('startLon3').value = startPos.coords.longitude;
       };
 
-      navigator.geolocation.watchPosition(geoSuccess);
+      navigator.geolocation.getCurrentPosition(geoSuccess);
     };
