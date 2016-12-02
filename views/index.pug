@@ -23,7 +23,7 @@ block content
 
     var flag = false;
 
-    if(getCookie(vocal))
+    if(getCookie("vocal"))
     {
       flag = true;
       console.log("VocalCookie detected.");
@@ -31,24 +31,30 @@ block content
 
     if(annyang){
 
-    // définition des commandes vocales
-    var commands = {
-      'start': function(){
-        flag = true;
-        var now = new Date();
-        now.setTime(now.getTime() + 1000*36000);
-        document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
-        responsiveVoice.speak("Vocal service activated.");},
-      'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
-      'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
-      'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
-      'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
-      'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
-      };
+      // définition des commandes vocales
+      var commands = {
+        'start': function(){
+          flag = true;
+          var now = new Date();
+          now.setTime(now.getTime() + 1000*36000);
+          document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
+          responsiveVoice.speak("Vocal service activated.");},
+        'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
+        'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
+        'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
+        'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
+        'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
+        };
 
-    // ajout des commandes et écoute
-    annyang.addCommands(commands);
-    annyang.start();
+      // ajout des commandes et écoute
+      annyang.addCommands(commands);
+
+      annyang.addCallback('result', function(phrases) {
+        console.log("I think the user said: ", phrases[0]);
+        console.log("But then again, it could be any of the following: ", phrases);
+      });
+
+      annyang.start();
 
     };
 
