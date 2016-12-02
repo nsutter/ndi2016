@@ -46,7 +46,6 @@ block content
     if(getCookie("vocal"))
     {
       flag = true;
-      console.log("VocalCookie detected.");
     }
 
     if(annyang){
@@ -54,12 +53,14 @@ block content
       if(langue = "fr-FR")
       {
         var commands = {
-          'accueil': function(){ if(flag){responsiveVoice.speak("Page accueil."); window.location.href("/");}},
+          'accueil': function(){ if(flag){responsiveVoice.speak("Page accueil.", "French Female"); window.location="/";}},
           'lecture': function(){ if(flag){
             var i;
+            if(nb.length==0)
+              responsiveVoice.speak("Aucun resultat", "French Female");
             for(i = 0; i < nb.length; i++)
             {
-              responsiveVoice.speak(nb.title + " à " + nb.where, "French Female");
+              responsiveVoice.speak(nb[i].title + " à " + nb[i].where, "French Female");
             }
           }},
           'aide': function(){ if(flag){responsiveVoice.speak("Pour accéder à une page, dites accueil ou lecture. En cas d'urgence faites le 112.", "French Female");}}
@@ -69,12 +70,14 @@ block content
       {
         // définition des commandes vocales
         var commands = {
-          'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/");}},
+          'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location="/";}},
           'read': function(){ if(flag){
             var i;
+            if(nb.length==0)
+              responsiveVoice.speak("No results.");
             for(i = 0; i < nb.length; i++)
             {
-              responsiveVoice.speak(nb.title + " in " + nb.where);
+              responsiveVoice.speak(nb[i].title + " in " + nb[i].where);
             }
           }},
           'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. To listen to the offers near you, say read. In case of emergency, call 112.");}}
@@ -83,13 +86,6 @@ block content
 
       // ajout des commandes et écoute
       annyang.addCommands(commands);
-
-      // debug
-      annyang.addCallback('result', function(phrases) {
-        console.log("I think the user said: ", phrases[0]);
-        console.log("But then again, it could be any of the following: ", phrases);
-      });
-
       annyang.start();
 
     };

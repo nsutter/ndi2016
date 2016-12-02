@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  script(src="https://code.responsivevoice.org/responsivevoice.js")
+  script.
+    function fini(){
+      window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+    responsiveVoice.OnVoiceReady = function() {
+      responsiveVoice.speak("Erreur 404, page non disponible. vous allez être redirigé en toute sécurité vers l'accueil.", "French Female", {onend: fini});
+    }
+
+  .container
+    .well
+      .row
+        .col-md-12
+          h2#msg_h2
+            | Cette page n'est pas disponible mais promis tout le reste marche (oubliez pas de mettre le son)
+      .row
+        .col-md-12
+          img.img-responsive(src='images/404.jpg')

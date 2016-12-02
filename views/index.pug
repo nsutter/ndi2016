@@ -16,7 +16,6 @@ block content
     if(getCookie("vocal"))
     {
       flag = true;
-      console.log("VocalCookie detected.");
     }
 
     if(annyang){
@@ -35,7 +34,7 @@ block content
             'manger': function(){ if(flag){responsiveVoice.speak("Page nourriture.", "French Female"); document.getElementById("formEat").submit();}},
             'qui est le boss': function(){{responsiveVoice.speak("C'est l'équipe", "French Female"); responsiveVoice.speak("NSA is watching us", "UK English Female");}},
             'dormir': function(){ if(flag){responsiveVoice.speak("Page hébergement", "French Female"); document.getElementById("formBed").submit();}},
-            'aide': function(){ if(flag){responsiveVoice.speak("Pour accéder à une page, dites santé ou douche ou nourriture ou hébergement. En cas d'urgence faites le 112.", "French Female");}}
+            'aide': function(){ if(flag){responsiveVoice.speak("Pour accéder à une page, dites santé ou douche ou nourriture ou hébergement. Pour revenir a l'accueil dites accueil. Pour lire une page dites lecture. En cas d'urgence faites le 112.", "French Female");}}
           }
       }
       else
@@ -52,7 +51,7 @@ block content
             'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
             'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
             'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
-            'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
+            'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In order to go back to the home page say home and read to read a page. In case of emergency, call 112.");}}
           };
       }
 
@@ -60,12 +59,6 @@ block content
 
       // ajout des commandes et écoute
       annyang.addCommands(commands);
-
-      // debug
-      annyang.addCallback('result', function(phrases) {
-        console.log("I think the user said: ", phrases[0]);
-        console.log("But then again, it could be any of the following: ", phrases);
-      });
 
       annyang.start();
 
