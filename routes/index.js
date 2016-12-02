@@ -106,7 +106,7 @@ router.post('/eat', function(req, res){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'titel - a portal sponsored by MSF', user : req.user });
+  res.render('index', { title: 'open refugees', user : req.user });
 });
 
 router.get('/about', function(req, res) {
