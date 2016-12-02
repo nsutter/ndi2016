@@ -31,6 +31,39 @@ block content
     }
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgoZTf61bLHq-ZCJEIE3SHKIBx7gUIOk&callback=initMap")
 
+  script(src="https://code.responsivevoice.org/responsivevoice.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+  script(src="/javascripts/cookies.js")
+  script.
+    var flag = false;
+
+    if(getCookie("vocal"))
+    {
+      flag = true;
+      console.log("VocalCookie detected.");
+    }
+
+    if(annyang){
+
+      // définition des commandes vocales
+      var commands = {
+        'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/")}},
+        'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. In case of emergency, call 112.");}}
+        };
+
+      // ajout des commandes et écoute
+      annyang.addCommands(commands);
+
+      // debug
+      annyang.addCallback('result', function(phrases) {
+        console.log("I think the user said: ", phrases[0]);
+        console.log("But then again, it could be any of the following: ", phrases);
+      });
+
+      annyang.start();
+
+    };
+
   .hidden-xl.hidden-md.col-sm-2
   .col-xl-3.col-md-3.col-sm-8.col-xs-12
       - var nb= resultat.length;

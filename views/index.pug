@@ -4,23 +4,8 @@ block content
 
   script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
+  script(src="/javascripts/cookies.js")
   script.
-    // récupération de cookie par w3schools.com
-    function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length,c.length);
-        }
-      }
-      return "";
-    }
-
     var flag = false;
 
     if(getCookie("vocal"))
@@ -49,6 +34,7 @@ block content
       // ajout des commandes et écoute
       annyang.addCommands(commands);
 
+      // debug
       annyang.addCallback('result', function(phrases) {
         console.log("I think the user said: ", phrases[0]);
         console.log("But then again, it could be any of the following: ", phrases);
