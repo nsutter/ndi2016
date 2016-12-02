@@ -28,3 +28,7 @@ a {
   height: 60%;
   width: 60%;
 }
+
+.img-responsive {
+    margin: 0 auto;
+}
