@@ -5,7 +5,29 @@ block content
   script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
   script.
+    // récupération de cookie par w3schools.com
+    function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+      }
+      return "";
+    }
+
     var flag = false;
+
+    if(getCookie(vocal))
+    {
+      flag = true;
+      console.log("VocalCookie detected.");
+    }
 
     if(annyang){
 
@@ -13,13 +35,9 @@ block content
     var commands = {
       'start': function(){
         flag = true;
-
         var now = new Date();
-        var expireTime = now.getTime() + 1000*36000;
-        now.setTime(expireTime);
-
+        now.setTime(now.getTime() + 1000*36000);
         document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
-
         responsiveVoice.speak("Vocal service activated.");},
       'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
       'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
