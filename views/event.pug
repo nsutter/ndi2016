@@ -3,8 +3,8 @@ extends layout
 block content
   h2= title
 
-
-  #map
+  .col-xl-1.col-md-1.col-sm-2.hidden-xs
+  #map.col-xl-6.col-md-6.col-sm-8.col-xs-12
 
   script.
     var nb = !{JSON.stringify(resultat)};
@@ -31,15 +31,17 @@ block content
     }
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgoZTf61bLHq-ZCJEIE3SHKIBx7gUIOk&callback=initMap")
 
-  .row
-    .col-md-4
-      .well
-        - var nb= resultat.length;
-        - var i=0;
-        while i< nb
-          h3 #{resultat[i].title}
-          p
-            | #{resultat[i].what}
-            br
-            | #{resultat[i].who}
-          -i = i+ 1
+  .hidden-xl.hidden-md.col-sm-2
+  .col-xl-3.col-md-3.col-sm-8.col-xs-12
+    .well
+      - var nb= resultat.length;
+      - var i=0;
+      while i< nb
+        h3 #{resultat[i].title}
+        p
+          | #{resultat[i].what}
+          if(resultat[i] != -1)
+            | #{resultat[i].date}
+          br
+          | by: #{resultat[i].who}
+        -i = i+ 1
