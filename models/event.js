@@ -6,7 +6,7 @@ var Event = new Schema({
   title: String,
   what: String,
   when: String,
-  where, String,
+  where: String,
   longitude: String,
   latitude: String,
   who: String,
