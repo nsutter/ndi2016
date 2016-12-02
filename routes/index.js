@@ -87,7 +87,7 @@ router.post('/health', function(req, res){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'titel - Make immigration great again', user : req.user });
+  res.render('index', { title: 'titel - a portal sponsored by MSF', user : req.user });
 });
 
 module.exports = router;
