@@ -1,8 +1,9 @@
 extends layout
 
 block content
-  h2= title
 
+  h1#msg_h1= title
+  p.description.lead #{resultat.length} result(s) for your request (40 km near you)
   .col-xl-1.col-md-1.col-sm-2.hidden-xs
   #map.col-xl-6.col-md-6.col-sm-8.col-xs-12
 
@@ -30,7 +31,6 @@ block content
       }
     }
   script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSgoZTf61bLHq-ZCJEIE3SHKIBx7gUIOk&callback=initMap")
-
   script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
   script(src="/javascripts/cookies.js")
