@@ -7,55 +7,9 @@ block content
 
   script.
     if(navigator.language == "fr")
-    var langue="fr-FR";
-    else if(navigator.language == "ar-EG")
-    var langue="ar-EG";
-    else if(navigator.language == "ar-JO")
-    var langue="ar-JO";
-    else if(navigator.language == "ar-KW")
-    var langue= "ar-KW";
-    else if(navigator.language == "ar-LB")
-    var langue= "ar-LB";
-    else if(navigator.language == "ar-QA")
-    var langue= "ar-QA";
-    else if(navigator.language == "ar-AE")
-    var langue= "ar-AE";
-    else if(navigator.language == "ar-MA")
-    var langue= "ar-MA";
-    else if(navigator.language == "ar-IQ")
-    var langue= "ar-IQ";
-    else if(navigator.language == "ar-DZ")
-    var langue= "ar-DZ";
-    else if(navigator.language == "ar-BH")
-    var langue= "ar-BH";
-    else if(navigator.language == "ar-LY")
-    var langue= "ar-LY";
-    else if(navigator.language == "ar-OM")
-    var langue= "ar-OM";
-    else if(navigator.language == "ar-SA")
-    var langue= "ar-SA";
-    else if(navigator.language == "ar-TN")
-    var langue= "ar-TN";
-    else if(navigator.language == "ar-YE")
-    var langue= "ar-YE";
+      var langue="fr-FR";
     else
-    var langue="en";
-
-    // récupération de cookie par w3schools.com
-    function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length,c.length);
-        }
-      }
-      return "";
-    }
+      var langue="en";
 
     var flag = false;
 
@@ -80,8 +34,8 @@ block content
             'douche': function(){ if(flag){responsiveVoice.speak("Page douche.", "French Female"); document.getElementById("formShower").submit();}},
             'manger': function(){ if(flag){responsiveVoice.speak("Page nourriture.", "French Female"); document.getElementById("formEat").submit();}},
             'qui est le boss': function(){{responsiveVoice.speak("C'est l'équipe", "French Female"); responsiveVoice.speak("NSA is watching us", "UK English Female");}},
-            'dormir': function(){ if(flag){responsiveVoice.speak("Page hebergement", "French Female"); document.getElementById("formBed").submit();}},
-            'aide': function(){ if(flag){responsiveVoice.speak("Pour acceder à une page, dites santé ou douche ou nourriture ou hebergement. En cas d'urgence faites le 112.", "French Female");}}
+            'dormir': function(){ if(flag){responsiveVoice.speak("Page hébergement", "French Female"); document.getElementById("formBed").submit();}},
+            'aide': function(){ if(flag){responsiveVoice.speak("Pour accéder à une page, dites santé ou douche ou nourriture ou hébergement. En cas d'urgence faites le 112.", "French Female");}}
           }
       }
       else

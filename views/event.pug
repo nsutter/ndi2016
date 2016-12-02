@@ -36,6 +36,11 @@ block content
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
   script(src="/javascripts/cookies.js")
   script.
+    if(navigator.language == "fr")
+      var langue="fr-FR";
+    else
+      var langue="en";
+
     var flag = false;
 
     if(getCookie("vocal"))
@@ -45,19 +50,36 @@ block content
     }
 
     if(annyang){
-
-      // définition des commandes vocales
-      var commands = {
-        'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/");}},
-        'read': function(){ if(flag){
-          var i;
-          for(i = 0; i < nb.length; i++)
-          {
-            responsiveVoice.speak(nb.title + " in " + nb.where);
-          }
-        }},
-        'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. To listen to the offers near you, say read. In case of emergency, call 112.");}}
+      annyang.setLanguage(langue);
+      if(langue = "fr-FR")
+      {
+        var commands = {
+          'accueil': function(){ if(flag){responsiveVoice.speak("Page accueil."); window.location.href("/");}},
+          'read': function(){ if(flag){
+            var i;
+            for(i = 0; i < nb.length; i++)
+            {
+              responsiveVoice.speak(nb.title + " à " + nb.where, "French Female");
+            }
+          }},
+          'aide': function(){ if(flag){responsiveVoice.speak("Pour accéder à une page, dites accueil ou lecture. En cas d'urgence faites le 112.", "French Female");}}
         };
+      }
+      else
+      {
+        // définition des commandes vocales
+        var commands = {
+          'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/");}},
+          'read': function(){ if(flag){
+            var i;
+            for(i = 0; i < nb.length; i++)
+            {
+              responsiveVoice.speak(nb.title + " in " + nb.where);
+            }
+          }},
+          'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. To listen to the offers near you, say read. In case of emergency, call 112.");}}
+        };
+      }
 
       // ajout des commandes et écoute
       annyang.addCommands(commands);
