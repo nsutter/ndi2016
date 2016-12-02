@@ -9,12 +9,17 @@ a {
   color: #00B7FF;
 }
 
-#msg_h2{
+#msg_h1 {
   text-align: center;
   font-weight: bold;
 }
 
-p{
+#msg_h2 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.description {
   text-align: center;
   font-size: 26px;
 }
