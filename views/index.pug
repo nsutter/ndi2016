@@ -38,45 +38,46 @@ block content
   br
   h2#msg_h2 What do you need ?
   br
-  .row
-    .col-md-3
+  .container
+    .row
+      .col-md-3
 
-    form#formHealth(action='/health', method='post')
-      input(type='hidden', id='startLat', name='StartLat', value='')
-      input(type='hidden', id='startLon', name='StartLon', value='')
+      form#formHealth(action='/health', method='post')
+        input(type='hidden', id='startLat', name='StartLat', value='')
+        input(type='hidden', id='startLon', name='StartLon', value='')
+        .col-md-2
+          input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Logo de santé")
+
       .col-md-2
-        input(type="image", name="submit", src="/images/hospital.svg", border="0", alt="Logo de santé")
 
-    .col-md-2
+      form#formBed(action='/bed', method='post')
+        input(type='hidden', id='startLat1', name='StartLat', value='')
+        input(type='hidden', id='startLon1', name='StartLon', value='')
+        .col-md-2
+          input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Logo de lit")
 
-    form#formBed(action='/bed', method='post')
-      input(type='hidden', id='startLat1', name='StartLat', value='')
-      input(type='hidden', id='startLon1', name='StartLon', value='')
+      .col-md-3
+    br
+    br
+    br
+    .row
+      .col-md-3
+
+      form#formShower(action='/shower', method='post')
+        input(type='hidden', id='startLat2', name='StartLat', value='')
+        input(type='hidden', id='startLon2', name='StartLon', value='')
+        .col-md-2
+          input(type="image", name="submit", src="images/shower.svg", border="0", alt="Logo de douche")
+
       .col-md-2
-        input(type="image", name="submit", src="images/sleeping-bed-silhouette.svg", border="0", alt="Logo de lit")
 
-    .col-md-3
-  br
-  br
-  br
-  .row
-    .col-md-3
+      form#formEat(action='/eat', method='post')
+        input(type='hidden', id='startLat3', name='StartLat', value='')
+        input(type='hidden', id='startLon3', name='StartLon', value='')
+        .col-md-2
+          input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Logo de repas")
 
-    form#formShower(action='/shower', method='post')
-      input(type='hidden', id='startLat2', name='StartLat', value='')
-      input(type='hidden', id='startLon2', name='StartLon', value='')
-      .col-md-2
-        input(type="image", name="submit", src="images/shower.svg", border="0", alt="Logo de douche")
-
-    .col-md-2
-
-    form#formEat(action='/eat', method='post')
-      input(type='hidden', id='startLat3', name='StartLat', value='')
-      input(type='hidden', id='startLon3', name='StartLon', value='')
-      .col-md-2
-        input(type="image", name="submit", src="images/restaurant.svg", border="0", alt="Logo de repas")
-
-    .col-md-3
+      .col-md-3
 
   script.
     window.onload = function() {
