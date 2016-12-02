@@ -11,7 +11,16 @@ block content
 
     // définition des commandes vocales
     var commands = {
-      'start': function(){ flag = true; responsiveVoice.speak("Vocal service activated.");},
+      'start': function(){
+        flag = true;
+
+        var now = new Date();
+        var expireTime = now.getTime() + 1000*36000;
+        now.setTime(expireTime);
+
+        document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
+
+        responsiveVoice.speak("Vocal service activated.");},
       'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
       'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
       'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
