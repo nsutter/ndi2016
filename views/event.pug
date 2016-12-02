@@ -47,8 +47,15 @@ block content
 
       // définition des commandes vocales
       var commands = {
-        'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/")}},
-        'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. In case of emergency, call 112.");}}
+        'home': function(){ if(flag){responsiveVoice.speak("Going to home page."); window.location.href("/");}},
+        'read': function(){ if(flag){
+          var i;
+          for(i = 0; i < nb.length; i++)
+          {
+            responsiveVoice.speak(nb.title + " in " + nb.where);
+          }
+        },
+        'help': function(){ if(flag){responsiveVoice.speak("To go to home page, just say home. To listen to the offers near you, say read. In case of emergency, call 112.");}}
         };
 
       // ajout des commandes et écoute

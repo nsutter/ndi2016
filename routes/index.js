@@ -49,6 +49,7 @@ router.post('/add_event', function(req, res) {
         what : req.body.what,
         category : req.body.category,
         when : req.body.when,
+        where : req.body.where,
         who : req.user.username,
         latitude : latitude,
         longitude : longitude
