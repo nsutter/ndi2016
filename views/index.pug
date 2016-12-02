@@ -1,11 +1,62 @@
 extends layout
 
 block content
-
+  script(src="/javascripts/cookies.js")
   script(src="https://code.responsivevoice.org/responsivevoice.js")
   script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
-  script(src="/javascripts/cookies.js")
+
   script.
+    if(navigator.language == "fr")
+    var langue="fr-FR";
+    else if(navigator.language == "ar-EG")
+    var langue="ar-EG";
+    else if(navigator.language == "ar-JO")
+    var langue="ar-JO";
+    else if(navigator.language == "ar-KW")
+    var langue= "ar-KW";
+    else if(navigator.language == "ar-LB")
+    var langue= "ar-LB";
+    else if(navigator.language == "ar-QA")
+    var langue= "ar-QA";
+    else if(navigator.language == "ar-AE")
+    var langue= "ar-AE";
+    else if(navigator.language == "ar-MA")
+    var langue= "ar-MA";
+    else if(navigator.language == "ar-IQ")
+    var langue= "ar-IQ";
+    else if(navigator.language == "ar-DZ")
+    var langue= "ar-DZ";
+    else if(navigator.language == "ar-BH")
+    var langue= "ar-BH";
+    else if(navigator.language == "ar-LY")
+    var langue= "ar-LY";
+    else if(navigator.language == "ar-OM")
+    var langue= "ar-OM";
+    else if(navigator.language == "ar-SA")
+    var langue= "ar-SA";
+    else if(navigator.language == "ar-TN")
+    var langue= "ar-TN";
+    else if(navigator.language == "ar-YE")
+    var langue= "ar-YE";
+    else
+    var langue="en";
+
+    // récupération de cookie par w3schools.com
+    function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+      }
+      return "";
+    }
+
     var flag = false;
 
     if(getCookie("vocal"))
@@ -15,21 +66,43 @@ block content
     }
 
     if(annyang){
+      annyang.setLanguage(langue);
+      if(langue = "fr-FR")
+      {
+        var commands = {
+          'démarrer': function(){
+            flag = true;
+            var now = new Date();
+            now.setTime(now.getTime() + 1000*3600000);
+            document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
+            responsiveVoice.speak("Le service vocal a été activé.", "French Female");},
+            'santé': function(){ if(flag){responsiveVoice.speak("Page santé.", "French Female"); document.getElementById("formHealth").submit();}},
+            'douche': function(){ if(flag){responsiveVoice.speak("Page douche.", "French Female"); document.getElementById("formShower").submit();}},
+            'manger': function(){ if(flag){responsiveVoice.speak("Page nourriture.", "French Female"); document.getElementById("formEat").submit();}},
+            'qui est le boss': function(){{responsiveVoice.speak("C'est l'équipe", "French Female"); responsiveVoice.speak("NSA is watching us", "UK English Female");}},
+            'dormir': function(){ if(flag){responsiveVoice.speak("Page hebergement", "French Female"); document.getElementById("formBed").submit();}},
+            'aide': function(){ if(flag){responsiveVoice.speak("Pour acceder à une page, dites santé ou douche ou nourriture ou hebergement. En cas d'urgence faites le 112.", "French Female");}}
+          }
+      }
+      else
+      {
+        // définition des commandes vocales
+        var commands = {
+          'start': function(){
+            flag = true;
+            var now = new Date();
+            now.setTime(now.getTime() + 1000*3600000);
+            document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
+            responsiveVoice.speak("Vocal service activated.");},
+            'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
+            'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
+            'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
+            'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
+            'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
+          };
+      }
 
-      // définition des commandes vocales
-      var commands = {
-        'start': function(){
-          flag = true;
-          var now = new Date();
-          now.setTime(now.getTime() + 1000*3600000);
-          document.cookie = "vocal=true; expires=" + now.toGMTString() + ";path=/";
-          responsiveVoice.speak("Vocal service activated.");},
-        'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
-        'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
-        'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
-        'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
-        'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
-        };
+
 
       // ajout des commandes et écoute
       annyang.addCommands(commands);
@@ -43,6 +116,7 @@ block content
       annyang.start();
 
     };
+
 
   h1#msg_h1 #{title}
   br
