@@ -2,29 +2,32 @@ extends layout
 
 block content
 
+  script(src="https://code.responsivevoice.org/responsivevoice.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js")
   script.
     var flag = false;
 
-    if (annyang) {
+    if(annyang){
 
     // définition des commandes vocales
     var commands = {
-      'start': function(){  flag = true; responsiveVoice.speak("Vocal service activated.");
+      'start': function(){ flag = true; responsiveVoice.speak("Vocal service activated.");},
       'health': function(){ if(flag){responsiveVoice.speak("Going to health service."); document.getElementById("formHealth").submit();}},
       'shower': function(){ if(flag){responsiveVoice.speak("Going to shower service."); document.getElementById("formShower").submit();}},
       'eat': function(){ if(flag){responsiveVoice.speak("Going to eat service."); document.getElementById("formEat").submit();}},
       'bed': function(){ if(flag){responsiveVoice.speak("Going to bed service."); document.getElementById("formBed").submit();}},
       'help': function(){ if(flag){responsiveVoice.speak("To load a service, just say health or shower or eat or bed. In case of emergency, call 112.");}}
       };
-    };
 
     // ajout des commandes et écoute
     annyang.addCommands(commands);
     annyang.start();
 
+    };
+
   h1#msg_h1 #{title}
   br
-  h2#msg_h2 If you need help, we care about you :)
+  h2#msg_h2 What do you need ?
   br
   .container
     .row
